@@ -12,10 +12,10 @@ public class Evaluacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nombre;
+
     private LocalDate fecha;
-
-
 
 
     public Evaluacion(Long id, String nombre, LocalDate fecha) {
