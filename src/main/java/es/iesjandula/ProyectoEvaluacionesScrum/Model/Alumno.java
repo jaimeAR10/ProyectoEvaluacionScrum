@@ -2,6 +2,10 @@ package es.iesjandula.ProyectoEvaluacionesScrum.Model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+
+import java.util.List;
 
 @Entity
 public class Alumno {
@@ -10,13 +14,17 @@ public class Alumno {
 
     private String nombre;
 
+    @ManyToMany(mappedBy = "alumnos")
+    private List<Evaluacion> evaluaciones;
+
+    @ManyToMany(mappedBy = "alumnos")
+    private List<Equipo> equipos;
+
     public Alumno() {
 
     }
-    /*hjhjhkjk*/
 
-    public Alumno(String email, String nombre) {
-        this.email = email;
+    public Alumno(String nombre) {
         this.nombre = nombre;
     }
 
