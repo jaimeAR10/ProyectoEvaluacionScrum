@@ -17,11 +17,10 @@ public class Equipo {
             joinColumns = @JoinColumn(name = "equipo_id"),
             inverseJoinColumns = @JoinColumn(name = "alumno_id")
     )
+    private List<Alumno> alumnos;
 
     @ManyToMany(mappedBy = "equipos")
     private List<Evaluacion> evaluaciones;
-
-    private List<Alumno> alumnos;
 
     public long getId() {
         return id;
