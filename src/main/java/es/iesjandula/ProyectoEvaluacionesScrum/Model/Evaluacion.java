@@ -1,11 +1,9 @@
 package es.iesjandula.ProyectoEvaluacionesScrum.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Evaluacion {
@@ -17,9 +15,25 @@ public class Evaluacion {
 
     private LocalDate fecha;
 
+    //Relaciones
+    @ManyToMany
+    @JoinTable(name = "alumno_evaluacion",
+    joinColumns = @JoinColumn(name = "evaluacion_id"),
+    inverseJoinColumns = @JoinColumn(name = "alumno_email")
+    )
+    private List<Alumno> alumnos;
 
-    public Evaluacion(Long id, String nombre, LocalDate fecha) {
-        this.id = id;
+    @ManyToMany
+    @JoinTable(name = "equipo_evaluacion",
+    joinColumns = @JoinColumn(name = "evaluacion_id"),
+    inverseJoinColumns = @JoinColumn(name = "equipo_id")
+    )
+    private List<Equipo> equipos;
+
+
+
+    public Evaluacion(String nombre, LocalDate fecha) {
+
         this.nombre = nombre;
         this.fecha = fecha;
     }
